@@ -73,15 +73,15 @@ adventskalendR <- function(datum = today()){
 # adventskalendR(datum = c(today()-4, today()))
 # adventskalendR(datum = c("2021-12-01", "2021-12-24"))
 # 
-library(tidyverse)
-library(knitr)
-library(jpeg)
-library(lubridate)
-adventskalenData <-
-  read_csv("../texte.csv") %>%
-  mutate(No = row_number())
-adventskalenData <- adventskalenData %>%
-  mutate(Text = unname(sapply(adventskalenData$Text, utf8ToInt)),
-         Bild = unname(sapply(adventskalenData$Bild, function(x){readJPEG(file.path("..", "bilder", paste0(x, ".jpg")))})))
-
-save(adventskalenData, file = "../data/adventskalenData.RData")
+# library(tidyverse)
+# library(knitr)
+# library(jpeg)
+# library(lubridate)
+# adventskalenData <-
+#   read_csv("../texte.csv") %>%
+#   mutate(No = row_number())
+# adventskalenData <- adventskalenData %>%
+#   mutate(Text = unname(sapply(adventskalenData$Text, utf8ToInt)),
+#          Bild = unname(sapply(adventskalenData$Bild, function(x){readJPEG(file.path("..", "bilder", paste0(x, ".jpg")))})))
+# 
+# save(adventskalenData, file = "../data/adventskalenData.RData")
