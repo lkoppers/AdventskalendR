@@ -1,8 +1,8 @@
 Package: adventskalendR
 Type: Package
 Title: Die Abenteuer des Schulterdrachen Calyampudi
-Version: 0.1
-Date: 2021-11-27
+Version: 0.2
+Date: 2021-11-29
 Authors@R: c(person("Lars", "Koppers", email="koppers@statistik.tu-dortmund.de", role=c("aut", "cre"), comment = c(ORCID = "0000-0002-1642-9616")))
 Description: Wer wollte nicht immer schon einen Adventskalender in R haben? Hier ist er nun. Mit adventskalendR lässt sich spielend einfach jeden Tag das passende Türchen öffnen. Alte Türchen erneut öffnen? Kein Problem. Aber hüte dich davor Türchen aus der Zukunft zu öffnen, jeder Vorfall wird gemeldet!
 License: GPL (>= 2)
