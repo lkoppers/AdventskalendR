@@ -1,0 +1,11 @@
+.gitignore
+README.md
+.travis.yml
+(.*?).R2
+^.*\.Rproj$
+^\.Rproj\.user$
+texte.ods
+texte.csv
+bilder/*
+global.R
+
