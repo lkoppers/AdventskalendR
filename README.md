@@ -10,7 +10,7 @@ devtools::install_github("lkoppers/adventskalendR")
 ### Benutzung
 Mit der Funktion adventskalendR() kann jeden Tag das aktuelle Türchen geöffnet werden. 
 
-library(adventskalendR)
+library(adventskalendR)<br>
 adventskalendR()
 
 *Zeitraum*
