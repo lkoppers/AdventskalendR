@@ -18,3 +18,4 @@ system("R CMD INSTALL adventskalendR_0.1.tar.gz")
 #########################
 
 devtools::install_github("lkoppers/adventskalendR")
+

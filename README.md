@@ -1,6 +1,8 @@
 # AdventskalendR
 Ein R-Paket-Adventskalender
 
+ACHTUNG: 2023 startet der Adventskalender erst am 2023-12-11, dafür geht er auch nach Weihnachten noch weiter.
+
 ### Installation
 
 devtools::install_github("lkoppers/adventskalendR")
