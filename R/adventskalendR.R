@@ -28,27 +28,28 @@ adventskalendR <- function(datum = today()){
     stop()
   }
   
-  data(adventskalenData)
+  adventskalenData_selected <- NULL
+  
+  for(i in as.character(datum)){
+    tmp <- read_rds(paste0("https://github.com/lkoppers/AdventskalendR_Data/raw/refs/heads/main/Tuerchen/", i, ".rds"))
+    adventskalenData_selected <- bind_rows(adventskalenData_selected, tmp)
+  }
   
   adventskalenData_selected <- 
-    adventskalenData %>% 
-    filter(Datum %in% datum)
-  
-  adventskalenData_selected <- 
-    adventskalenData_selected %>% 
+    adventskalenData_selected |> 
     mutate(Text = unname(sapply(adventskalenData_selected$Text, intToUtf8)))
   
   adventskalenData_selected <- 
-    adventskalenData_selected %>% 
-    group_by(Datum) %>% 
-    filter(No == min(No)) %>% 
+    adventskalenData_selected |> 
+    group_by(Datum) |> 
+    filter(No == min(No)) |> 
     mutate(No = No - 0.1, 
            Text = paste("###", Datum), 
-           Typ = "text") %>% 
-    bind_rows(adventskalenData_selected) %>% 
+           Typ = "text") |> 
+    bind_rows(adventskalenData_selected) |> 
     arrange(No)
   
-  Bildexport <- adventskalenData_selected %>% filter(Typ == "bild")
+  Bildexport <- adventskalenData_selected |> filter(Typ == "bild")
   
   for(i in 1:nrow(Bildexport)){
     writeJPEG(image = Bildexport$Bild[i][[1]], target = file.path(tempdir(), paste0(Bildexport$No[i], ".jpg")))
@@ -77,11 +78,23 @@ adventskalendR <- function(datum = today()){
 # library(knitr)
 # library(jpeg)
 # library(lubridate)
-# adventskalenData <-
-#   read_csv("../texte.csv") %>%
-#   mutate(No = row_number())
-# adventskalenData <- adventskalenData %>%
-#   mutate(Text = unname(sapply(adventskalenData$Text, utf8ToInt)),
-#          Bild = unname(sapply(adventskalenData$Bild, function(x){readJPEG(file.path("..", "bilder", paste0(x, ".jpg")))})))
 # 
-# save(adventskalenData, file = "../data/adventskalenData.RData")
+# 
+# adventskalenData <-
+#   read_csv("texte.csv") |>
+#   mutate(No = row_number())
+# adventskalenData <-
+#   adventskalenData |>
+#   mutate(Text = unname(sapply(adventskalenData$Text, utf8ToInt)),
+#          Bild = unname(sapply(adventskalenData$Bild, function(x){readJPEG(file.path("bilder", paste0(x, ".jpg")))})))
+# 
+# Adventstage <- as.character(unique(adventskalenData$Datum))
+# 
+# for(i in Adventstage){
+#   adventskalenData |>
+#     filter(Datum == as.Date(i)) |>
+#     write_rds(
+#       file = file.path("clouddata", paste0(i, ".rds")),
+#       compress = "gz"
+#       )
+# }
