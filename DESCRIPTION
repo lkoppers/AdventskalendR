@@ -15,7 +15,8 @@ Imports:
 	markdown, 
 	dplyr, 
 	jpeg, 
-	lubridate
+	lubridate,
+	readr
 Suggests:
 	devtools (>= 2.4.2),
 RoxygenNote: 7.3.2

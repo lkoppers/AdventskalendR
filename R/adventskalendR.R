@@ -13,6 +13,7 @@
 #' @import knitr
 #' @import jpeg
 #' @import lubridate
+#' @import readr
 
 adventskalendR <- function(datum = today()){
   existierende_daten <- read_csv("https://github.com/lkoppers/AdventskalendR_Data/raw/refs/heads/main/existierende_daten.csv")$Datum
