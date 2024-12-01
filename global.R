@@ -11,11 +11,10 @@ roxygenize(package.dir = ".")
 setwd("..")
 
 system("R CMD build AdventskalendR --resave-data")
-system("R CMD INSTALL adventskalendR_0.1.tar.gz")
+system("R CMD INSTALL adventskalendR_0.5.tar.gz")
 
 #########################
 ## Install from github ##
 #########################
 
 devtools::install_github("lkoppers/adventskalendR")
-

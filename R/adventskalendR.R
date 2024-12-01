@@ -15,7 +15,10 @@
 #' @import lubridate
 
 adventskalendR <- function(datum = today()){
-  if(as.character(datum[1]) == "alle"){datum <- c("2021-12-01", as.character(today()))}
+  existierende_daten <- read_csv("https://github.com/lkoppers/AdventskalendR_Data/raw/refs/heads/main/existierende_daten.csv")$Datum
+  if(as.character(datum[1]) == "alle"){
+    datum <- existierende_daten[existierende_daten <= today()]
+    }
   datum <- as.Date(datum)
   if(length(datum) == 2){datum <- seq.Date(datum[1], datum[2], "1 day")}
   
@@ -27,11 +30,13 @@ adventskalendR <- function(datum = today()){
     if (interactive()) browseURL(file.path(tempdir(), "adventskalendR.html"))
     stop()
   }
-  
+  datum <- datum[datum %in% existierende_daten]
+
   adventskalenData_selected <- NULL
   
   for(i in as.character(datum)){
-    tmp <- read_rds(paste0("https://github.com/lkoppers/AdventskalendR_Data/raw/refs/heads/main/Tuerchen/", i, ".rds"))
+    tmp <- NULL
+    try(tmp <- read_rds(paste0("https://github.com/lkoppers/AdventskalendR_Data/raw/refs/heads/main/Tuerchen/", i, ".rds")))
     adventskalenData_selected <- bind_rows(adventskalenData_selected, tmp)
   }
   
@@ -98,3 +103,8 @@ adventskalendR <- function(datum = today()){
 #       compress = "gz"
 #       )
 # }
+
+# read_csv("texte.csv") |>
+#   select(Datum) |> 
+#   distinct() |> 
+#   write_csv("existierende_daten.csv")
