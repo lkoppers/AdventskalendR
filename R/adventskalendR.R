@@ -16,7 +16,7 @@
 #' @import readr
 
 adventskalendR <- function(datum = today()){
-  existierende_daten <- read_csv("https://github.com/lkoppers/AdventskalendR_Data/raw/refs/heads/main/existierende_daten.csv")$Datum
+  existierende_daten <- read_csv("https://github.com/lkoppers/AdventskalendR_Data/raw/refs/heads/main/existierende_daten.csv", show_col_types = FALSE)$Datum
   if(as.character(datum[1]) == "alle"){
     datum <- existierende_daten[existierende_daten <= today()]
     }
