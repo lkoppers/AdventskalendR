@@ -73,7 +73,8 @@ adventskalendR <- function(datum = today()){
   }
 
   writeLines(document, con = file.path(tempdir(), "adventskalendR.Rmd"))
-  knit2html(file.path(tempdir(), "adventskalendR.Rmd"), output = file.path(tempdir(), "adventskalendR.html"))
+  # knit2html(file.path(tempdir(), "adventskalendR.Rmd"), output = file.path(tempdir(), "adventskalendR.html"))
+  rmarkdown::render(file.path(tempdir(), "adventskalendR.Rmd"))
   if (interactive()) browseURL(file.path(tempdir(), "adventskalendR.html"))
 }
 
@@ -83,7 +84,6 @@ adventskalendR <- function(datum = today()){
 # library(tidyverse)
 # library(knitr)
 # library(jpeg)
-# library(lubridate)
 # 
 # 
 # adventskalenData <-
@@ -104,8 +104,8 @@ adventskalendR <- function(datum = today()){
 #       compress = "gz"
 #       )
 # }
-
+# 
 # read_csv("texte.csv") |>
-#   select(Datum) |> 
-#   distinct() |> 
+#   select(Datum) |>
+#   distinct() |>
 #   write_csv("existierende_daten.csv")
